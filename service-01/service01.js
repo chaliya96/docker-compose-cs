@@ -12,7 +12,6 @@ const request_02 =  () => {
     return new Promise(function(resolve, reject){
         axios.get('http://service02:8002')
         .then(res => {
-          console.log(res.data);
           resolve(res.data)
       
         })
