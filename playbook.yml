@@ -23,10 +23,8 @@
           when: package_check is succeeded
 
         - name: get uptime
-          shell: /usr/bin/uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
-          changed_when: False
+          shell: 'uptime'
           register: uptime
     
-        - debug: var={{ item }}
-          with_items:
-            - uptime.stdout
+        - debug:
+            var: uptime.stdout_lines
