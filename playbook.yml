@@ -1,25 +1,14 @@
 ---
     - hosts: all
       #connection: local # When running locally
-      vars:
-        package_names:
-          - vim
-          - git
       tasks:
         - name: "Check if listed package is installed or not on Debian Linux family"
-          command: dpkg-query -l "{{ item }}"
-          loop: "{{ package_names }}"
+          shell: 'dpkg-query -l git'
           register: package_check
-          when: ansible_facts['os_family'] == "Debian"
     
-        - name: "Check if listed package is installed or not on Red Hat Linux family"
-          command: rpm -q "{{ item }}"
-          loop: "{{ package_names }}"
-          register: package_check
-          when: ansible_facts['os_family'] == "RedHat"
         - name: "Print execution results"
           debug:
-            msg: "Package is installedgf"
+            msg: "Git is installed"
           when: package_check is succeeded
 
         - name: get uptime
