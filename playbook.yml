@@ -22,8 +22,11 @@
             msg: "Package is installedgf"
           when: package_check is succeeded
 
-        - name: Get uptime first
-          shell: uptime
-          register: hello
-          - debug: msg="{{ hello.stdout }}"
-          - debug: msg="{{ hello.stderr }}"
+        - name: get uptime
+          shell: /usr/bin/uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'
+          changed_when: False
+          register: uptime
+    
+        - debug: var={{ item }}
+          with_items:
+            - uptime.stdout
