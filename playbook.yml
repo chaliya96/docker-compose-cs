@@ -21,3 +21,9 @@
           debug:
             msg: "Package is installedgf"
           when: package_check is succeeded
+
+        - name: Get uptime first
+          shell: uptime
+          register: hello
+          - debug: msg="{{ hello.stdout }}"
+          - debug: msg="{{ hello.stderr }}"
