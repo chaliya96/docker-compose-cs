@@ -5,11 +5,7 @@
         - name: "Check if listed package is installed or not on Debian Linux family"
           shell: 'dpkg-query -l git'
           register: package_check
-    
-        - name: "Print execution results"
-          debug:
-            msg: "Git is installed"
-          when: package_check is succeeded
+          ignore_errors: yes
 
         - name: get uptime
           shell: 'uptime'
@@ -17,3 +13,4 @@
     
         - debug:
             var: uptime.stdout_lines
+            var: package_check.stdout_lines

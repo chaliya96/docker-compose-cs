@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 RUN apt update && apt install  openssh-server sudo -y
 RUN apt install net-tools
+RUN apt install git
 # Create a user “sshuser” and group “sshgroup”
 RUN groupadd sshgroup && useradd -ms /bin/bash -g sshgroup sshuser
 # Create sshuser directory in home
