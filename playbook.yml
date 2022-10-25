@@ -2,7 +2,7 @@
     - hosts: all
       #connection: local # When running locally
       tasks:
-        - name: "Check if listed package is installed or not on Debian Linux family"
+        - name: "Check if GIT is installed"
           shell: 'dpkg-query -l git'
           register: package_check
           ignore_errors: yes
@@ -12,5 +12,5 @@
           register: uptime
     
         - debug:
-            msg: "The role is {{ uptime.stdout_lines }} The environment is {{ package_check.stdout_lines }}"
+            msg: "Server uptime : {{ uptime.stdout_lines }} \n Is GIT installed: {{ package_check.stdout_lines }}"
 
