@@ -12,5 +12,7 @@
           register: uptime
     
         - debug:
-            msg: "Server uptime : {{ uptime.stdout_lines }} \n Is GIT installed: {{ package_check.stdout_lines }}"
+            msg: 
+                - "Server uptime : {{ uptime.stdout_lines }}" 
+                - "Is GIT installed: {{ package_check.stdout_lines }}"
 
