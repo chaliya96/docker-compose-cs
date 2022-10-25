@@ -12,5 +12,7 @@
           register: uptime
     
         - debug:
-            var: uptime.stdout_lines
-            var: package_check.stdout_lines
+            msg: |
+            The role is {{ uptime.stdout_lines }}
+            The environment is {{ package_check.stdout_lines }}
+
