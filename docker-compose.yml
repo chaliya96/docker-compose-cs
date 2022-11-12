@@ -44,8 +44,6 @@ services:
         build: ./httpserve
         ports:
             - "8001:3001"
-        networks:
-            -   backend
         volumes:
             - ./logs:/logs
 networks:
