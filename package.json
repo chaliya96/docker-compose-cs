@@ -1,14 +1,15 @@
 {
-  "name": "service-02",
+  "name": "rabbitmq-local",
   "version": "1.0.0",
   "description": "",
-  "main": "service02.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Chalith Tharuka",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "amqplib": "^0.10.3",
+    "express": "^4.18.2"
   }
 }

@@ -1,6 +1,8 @@
 FROM node:latest
  
-WORKDIR /service-02
+WORKDIR /imed
+
+VOLUME ["/logs"]
  
 COPY package.json package.json
  
@@ -8,6 +10,4 @@ RUN npm install
  
 COPY . .
  
-CMD [ "node", "service02.js" ]
-
-EXPOSE 8002
+CMD [ "node", "IMED.js" ]

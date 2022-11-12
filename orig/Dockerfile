@@ -1,6 +1,6 @@
 FROM node:latest
  
-WORKDIR /service-01
+WORKDIR /orig
  
 COPY package.json package.json
  
@@ -8,5 +8,4 @@ RUN npm install
  
 COPY . .
  
-CMD [ "node", "service01.js" ]
-
+CMD [ "node", "ORIG.js" ]

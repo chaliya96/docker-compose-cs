@@ -1,19 +1,53 @@
 version: '3'
 services:
-    service01:
-        build: ./service-01
-        volumes:
-            - /service-01/node_modules
+    rabbitmq:
+        image: rabbitmq:latest
+        container_name: 'rabbitmq'
         ports:
-            - "8001:8001"
+            - "5672"
+            - "15672"
         networks:
-                backend:
-    service02:
-        build: ./service-02
-        volumes:
-          - /service-02/node_modules
+            - rabbitmq_go_net
+    orig:
+        build: ./orig
+        ports:
+            - "5672"
         networks:
-            backend:
-networks:
-    backend:
+            -   rabbitmq_go_net
+        depends_on:
+            rabbitmq:
+                condition: service_completed_successfully
 
+    imed:
+        build: ./imed
+        ports:
+            - "5672"
+        networks:
+            -   rabbitmq_go_net
+        depends_on:
+            rabbitmq:
+                condition: service_completed_successfully
+
+    obse:
+        build: ./obse
+        ports:
+            - "5672"
+        volumes:
+            - ./logs:/logs 
+        networks:
+            -   rabbitmq_go_net
+        depends_on:
+            rabbitmq:
+                condition: service_completed_successfully  
+
+    httpserver:
+        build: ./httpserve
+        ports:
+            - "8001:3001"
+        networks:
+            -   backend
+        volumes:
+            - ./logs:/logs
+networks:
+    rabbitmq_go_net:
+        driver: bridge
