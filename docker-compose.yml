@@ -15,7 +15,7 @@ services:
             - "5672"
         networks:
             -   rabbitmq_go_net
-        command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "ORIG.js"]
+        command: ["./wait-for-it.sh", "rabbitmq_go_net:15672", "--", "node", "ORIG.js"]
 
     imed:
         build: ./imed
@@ -24,7 +24,7 @@ services:
             - "5672"
         networks:
             -   rabbitmq_go_net
-        command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "IMED.js"]
+        command: ["./wait-for-it.sh", "rabbitmq_go_net:15672", "--", "node", "IMED.js"]
 
 
     obse:
@@ -36,7 +36,7 @@ services:
             - ./logs:/logs 
         networks:
             -   rabbitmq_go_net
-        command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "OBSE.js"]
+        command: ["./wait-for-it.sh", "rabbitmq_go_net:15672", "--", "node", "OBSE.js"]
 
     httpserver:
         build: ./httpserve

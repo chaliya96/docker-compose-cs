@@ -3,7 +3,7 @@
 const amqp = require('amqplib/callback_api');
 const fs = require('fs');
 
-amqp.connect('amqp://rabbitmqserver', function(error0, connection) {
+amqp.connect('amqp://rabbitmq_go_net', function(error0, connection) {
     if (error0) {
         throw error0;
     }
