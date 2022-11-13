@@ -38,13 +38,14 @@ services:
             -   rabbitmq_go_net
         command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "OBSE.js"]
 
-
     httpserver:
         build: ./httpserve
         ports:
-            - "8080:3001"
+            - "8087:3001"
         volumes:
             - ./logs:/logs
+        networks:
+            -   rabbitmq_go_net
 
 networks:
     rabbitmq_go_net:
