@@ -3,7 +3,7 @@
 const amqp = require('amqplib/callback_api');
 const fs = require('fs');
 
-amqp.connect('amqp://rabbitmq_go_net', function(error0, connection) {
+amqp.connect('amqp://rabbitmqserver', function(error0, connection) {
     if (error0) {
         throw error0;
     }
@@ -33,7 +33,7 @@ amqp.connect('amqp://rabbitmq_go_net', function(error0, connection) {
           channel.consume(q.queue, function(msg) {
             console.log(" [x] %s:'%s'", msg.fields.routingKey, msg.content.toString());
             let formatMsg = new Date().toISOString()+" "+n.toString()+" "+msg.content.toString()+" to "+msg.fields.routingKey;
-            fs.appendFile('logs/file.log', formatMsg + "\n", err => {
+            fs.appendFile('/logs/file.log', formatMsg + "\n", err => {
                 if (err) {
                   console.error(err);
                 }
