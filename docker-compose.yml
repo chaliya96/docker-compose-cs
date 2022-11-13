@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
     rabbitmq:
         image: rabbitmq:latest
@@ -17,10 +17,6 @@ services:
         depends_on:
             rabbitmq:
                 condition: service_completed_successfully
-            imed:
-                condition: service_completed_successfully
-            obse:
-                condition: service_completed_successfully
 
     imed:
         build: ./imed
@@ -30,8 +26,6 @@ services:
             -   rabbitmq_go_net
         depends_on:
             rabbitmq:
-                condition: service_completed_successfully
-            obse:
                 condition: service_completed_successfully
 
     obse:
@@ -52,6 +46,9 @@ services:
             - "8001:3001"
         volumes:
             - ./logs:/logs
+        depends_on:
+            rabbitmq:
+                condition: service_completed_successfully  
 networks:
     rabbitmq_go_net:
         driver: bridge
