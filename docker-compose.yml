@@ -15,6 +15,7 @@ services:
             - "5672"
         networks:
             -   rabbitmq_go_net
+        restart:    on-failure
         command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "ORIG.js"]
 
     imed:
@@ -24,18 +25,19 @@ services:
             - "5672"
         networks:
             -   rabbitmq_go_net
+        restart:    on-failure
         command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "IMED.js"]
 
 
     obse:
         build: ./obse
-        restart: on-failure
         ports:
             - "5672"
         volumes:
             - ./logs:/logs 
         networks:
             -   rabbitmq_go_net
+        restart:    on-failure
         command: ["./wait-for-it.sh", "rabbitmqserver:15672", "--", "node", "OBSE.js"]
 
     httpserver:
