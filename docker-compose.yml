@@ -17,6 +17,10 @@ services:
         depends_on:
             rabbitmq:
                 condition: service_completed_successfully
+            imed:
+                condition: service_completed_successfully
+            obse:
+                condition: service_completed_successfully
 
     imed:
         build: ./imed
@@ -26,6 +30,8 @@ services:
             -   rabbitmq_go_net
         depends_on:
             rabbitmq:
+                condition: service_completed_successfully
+            obse:
                 condition: service_completed_successfully
 
     obse:
