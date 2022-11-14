@@ -10,7 +10,7 @@ app.listen(3001, () => {
 app.get("/", function(req, res) {
     fs.readFile('/logs/file.log', function (err, data) {
         if (err) throw err;
-        res.writeHead(200, { 'Content-Type': 'text/xml' });
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.write(data)
         res.end()
       });
